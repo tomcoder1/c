@@ -7,6 +7,7 @@ bool cp(name x, name y)
   if (x.b!=y.b)
       return x.b<y.b;
 }
+// sort theo b;
 int main()
 {
   name p[i];

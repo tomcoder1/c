@@ -8,7 +8,7 @@
 using namespace std;
 ll n,a[100005],m,b[100005],c[100005],d[1005]={0},u=0,kq=0;
 int main(){
-  file("CHOREFRI");
+	file("CHOREFRI");
 	cin>>n;
 	FOR(i,1,n)
 		cin>>a[i];

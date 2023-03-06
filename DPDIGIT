@@ -1,0 +1,49 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+#define N 1000
+int helper(string str, int i, int sum, int tight, int dp[N][N][2])
+{
+   if (i >= str.size() || sum < 0)
+   {
+       if (sum == 0)
+       {
+           return 1;
+       }
+       return 0;
+   }
+   if (dp[sum][i][tight] != -1)
+   {
+       return dp[sum][i][tight];
+   }
+   int ans = 0;
+   int end = tight ? str[i] - '0' : 9;
+   for (int j = 0; j <= end; j++)
+   {
+       ans += helper(str, i + 1, sum - j, (tight & (j == end)), dp);
+   }
+   return dp[sum][i][tight] = ans;
+}
+int countNumbersY(int L, int R, int Y)
+{
+   if (R == 0 && Y == 0)
+   {
+       return 1;
+   }
+   int dp[N][N][2];
+   memset(dp, -1, sizeof(dp));
+   int rightCount = helper(str, 0, Y,true, dp);
+   str = to_string(L - 1);
+   memset(dp, -1, sizeof(dp));
+
+   int leftCount = helper(str, 0, Y,true, dp);
+   return (rightCount - leftCount);
+}
+int main()
+{
+   int L, R, Y;
+   cout << " Enter the Value of L, R, Y: ";
+   cin >> L >> R >> Y;
+   cout << "Count of numbers from the range [L, R] whose sum of digits is Y: " << countNumbersY(L, R, Y) << endl;
+   return 0;
+}
